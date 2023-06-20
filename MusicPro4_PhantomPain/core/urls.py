@@ -10,6 +10,7 @@ urlpatterns = [
     path('login', html_login, name='login'),
     path('tienda', tienda, name='tienda'),
     path('usuario', vista_usuario, name='vista_usuario'),
+    
     path('vista_admin', vista_admin, name='vista_admin'),
     path('tienda_admin', tienda_admin, name='tienda_admin'),
     path('agregar_productos', agregar_productos, name='agregar_productos'),
