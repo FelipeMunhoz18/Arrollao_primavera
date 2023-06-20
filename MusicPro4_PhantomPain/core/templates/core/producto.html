@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ producto.nombreProducto }}</title>
+
+         <!-- Bootstrap -->
+         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+         <!-- CSS Propio -->
+        <link type="text/css" rel="stylesheet" href="{% static 'core/CSS/styles.css' %}">
+        <link type="text/css" rel="stylesheet" href="{% static 'core/CSS/styles1.css' %}">
+        <!-- ICONOS INCREÍBLES -->
+        <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+        <!-- AHHHHHHHHHHHHHHHHHHHHHHH -->
+        <link rel="icon" type="image/x-icon" href="{% static 'core/IMG/icono.ico' %}">
+
+</head>
+
+<body>
+  {% load humanize %}  
+      <!-- NAVBAR -->
+  <div class="topnav" id="myTopnav">
+    <a href="{% url 'vista_usuario' %}" class="active"><i class="fa fa-home"></i></i> Home</a>
+    <div class="topnav-right">
+      <a href="{% url 'tienda' %}" style="color: #ffffff;"></i> Go the products.</a>
+      <a href="{% url 'carrito' %}"><i class="fa-solid fa-cart-shopping" style="color: #ffffff;"></i> Shopping Cart</a>
+      <a href="{% url 'index' %}"><i class="fa-sharp fa-solid fa-right-to-bracket" style="color: #ffffff;"></i> Sign off.</a>
+  
+    </div>
+
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+    <!-- NAVBAR -->
+  
+     <!-- NAVBAR -->
+  </div>
+  <div class = "card-wrapper">
+      <div class = "card">
+        <!-- card left -->
+        <div class = "product-imgs">
+          <div class = "img-display">
+            <div class = "img-showcase">
+              <img src = "{{ producto.imagenUno.url }}" alt = "A">
+              <img src = "{{ producto.imagenDos.url }}" alt = "b">
+              <img src = "{{ producto.imagenTres.url }}" alt = "c">
+              <img src = "{{ producto.imagenCuatro.url }}" alt = "d">
+            </div>
+          </div>
+          <div class = "img-select">
+            <div class = "img-item">
+              <a href = "#" data-id = "1">
+                <img src = "{{ producto.imagenUno.url }}" alt = "shoe image">
+              </a>
+            </div>
+            <div class = "img-item">
+              <a href = "#" data-id = "2">
+                <img src = "{{ producto.imagenDos.url }}" alt = "shoe image">
+              </a>
+            </div>
+            <div class = "img-item">
+              <a href = "#" data-id = "3">
+                <img src = "{{ producto.imagenTres.url }}" alt = "shoe image">
+              </a>
+            </div>
+            <div class = "img-item">
+              <a href = "#" data-id = "4">
+                <img src = "{{ producto.imagenCuatro.url }}" alt = "shoe image">
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- card right -->
+        <div class = "product-content">
+          <h2 class = "product-title">{{ producto.nombreProducto }}</h2>
+          <a href = "" class = "product-link">Ready to buy</a>
+          <div class = "product-rating">
+            <i class = "fas fa-star"></i>
+            <i class = "fas fa-star"></i>
+            <i class = "fas fa-star"></i>
+            <i class = "fas fa-star"></i>
+            <i class = "fas fa-star"></i>
+            <span>5(5k+)</span>
+          </div>
+
+          <div class = "product-price">
+            <p class = "last-price"> <span></span></p>
+            <p class = "new-price">Price: <span>${{producto.precioProducto | intcomma}}</span></p>
+          </div>
+          <div class = "product-detail">
+            <h2>Description: </h2>
+            <p>{{ producto.descripcionProducto }}</p>
+            <ul>
+              <li>Times Updated: <span>{{ producto.stockProducto }}</span></li>
+              <li>Name: <span>{{ producto.nombreProducto }}</span></li>
+            </ul>
+          </div>
+          <div class = "purchase-info">
+            <form method="POST" action="{% url 'agregar_al_carrito' producto.id %}">
+              {% csrf_token %}
+              <button type="submit" class="btn">Add to cart. <i class="fas fa-shopping-cart"></i></button>
+            </form>
+            <button type = "button" class = "btn"><a href="{% url 'tienda' %}" >Back to store</a></button>
+          </div>
+          <div class = "social-links">
+            <p>Share me at: </p>
+            <a href = "#">
+              <i class = "fab fa-facebook-f"></i>
+            </a>
+            <a href = "#">
+              <i class = "fab fa-twitter"></i>
+            </a>
+            <a href = "#">
+              <i class = "fab fa-instagram"></i>
+            </a>
+            <a href = "#">
+              <i class = "fab fa-whatsapp"></i>
+            </a>
+            <a href = "#">
+              <i class = "fab fa-pinterest"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <style>
+            footer {
+    color: #fff;
+      background-color: black;
+      padding: 20px;
+      text-align: center;
+    }
+    a{
+        color: #fff; 
+    }
+
+      </style>
+
+
+
+
+<!--Java script -->
+<script src="{% static 'core/JS/script.js' %}"></script>
+
+ <!--Bootstrap -->
+ <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+     crossorigin="anonymous"></script>
+ <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+     integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+     crossorigin="anonymous"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+     crossorigin="anonymous"></script>
+</body>
+<footer>
+  <p>&copy; 2023: Mogli_Maker cults3d.com</p>
+  <p>&copy; f.munoz7@duocuc.com.</p>
+  <div class="social-links">
+      <p>Share me at: </p>
+      <a href="#">
+          <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="#">
+          <i class="fab fa-twitter"></i>
+      </a>
+      <a href="#">
+          <i class="fab fa-instagram"></i>
+      </a>
+      <a href="#">
+          <i class="fab fa-whatsapp"></i>
+      </a>
+      <a href="#">
+          <i class="fab fa-pinterest"></i>
+      </a>
+</footer>
+</html>
+
+
+
+

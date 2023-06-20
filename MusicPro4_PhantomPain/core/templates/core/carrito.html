@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MusicPro - Carrito</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- CSS Propio -->
+    <link type="text/css" rel="stylesheet" href="{% static 'core/CSS/carrito.css' %}">
+
+    <!-- ICONOS INCREÍBLES -->
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+
+    <link rel="icon" type="image/x-icon" href="{% static 'core/IMG/icono.ico' %}">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+<body>
+  {% load humanize %}
+    <!-- NAVBAR -->
+    <div class="topnav" id="myTopnav">
+        <a href="{% url 'vista_usuario' %}" class="active"><i class="fa fa-home"></i></i> Home.</a>
+        <div class="topnav-right">
+            <a href="{% url 'tienda' %}" style="color: #ffffff;"></i> Go to all products</a>
+            <a href="{% url 'carrito' %}"><i class="fa-solid fa-cart-shopping"
+                    style="color: #ffffff;"></i> Shopping Cart.</a>
+            <a href="{% url 'index' %}"><i class="fa-sharp fa-solid fa-right-to-bracket"
+                    style="color: #ffffff;"></i> Sign-off.</a>
+        </div>
+
+
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+
+    <!-- NAVBAR -->
+    
+
+    <div class="container px-3 my-5 clearfix">
+        <!-- Shopping cart table -->
+        <div class="card">
+            <div class="card-header">
+                <h2>Shopping Cart</h2>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered m-0">
+                        <thead>
+                            <tr>
+                                <!-- Set columns width -->
+                                <th class="text-center py-3 px-4" style="min-width: 400px;">Product name and details &amp;
+                                    Detalles</th>
+                                <th class="text-right py-3 px-4" style="width: 100px;">Price</th>
+                                <th class="text-center py-3 px-4" style="width: 120px;">Cantidad</th>
+                                <th class="text-right py-3 px-4" style="width: 100px;">Total</th>
+                                <th class="text-center align-middle py-3 px-0" style="width: 40px;"><a href="#"
+                                        class="shop-tooltip float-none text-light" title=""
+                                        data-original-title="Clear cart"><i class="ino ion-md-trash"></i></a></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in items %}
+                            <tr>
+                                <td class="p-4">
+                                    <div class="media align-items-center">
+                                        <img src="{{ item.producto.imagenUno.url }}"
+                                            class="d-block ui-w-40 ui-bordered mr-4" alt="">
+                                        <div class="media-body">
+                                            <a href="#" class="d-block text-dark">{{ item.producto.nombreProducto }}</a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-right font-weight-semibold align-middle p-4">${{ item.producto.precioProducto | intcomma }}</td>
+                                <td class="text-center font-weight-semibold align-middle p-4">
+                                  <button class="btn-quantity btn-minus" data-id="{{ item.producto.id }}" data-quantity="{{ item.cantidad }}">-</button>
+                                  <span class="quantity" data-quantity="{{ item.cantidad }}">{{ item.cantidad }}</span>
+                                  <button class="btn-quantity btn-plus" data-id="{{ item.producto.id }}" data-quantity="{{ item.cantidad }}">+</button>
+                              </td>
+                                <td class="text-right font-weight-semibold align-middle p-4">${{ item.subtotal | intcomma }}</td>
+                                <td class="text-center align-middle px-0"><a href="#"
+                                        class="shop-tooltip close float-none text-danger" title=""
+                                        data-original-title="Remove">×</a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <!-- / Shopping cart table -->
+
+                <div class="d-flex flex-wrap justify-content-between align-items-center pb-4">
+
+                    <div class="d-flex">
+
+                        <div class="text-right mt-4">
+                            <label class="text-muted font-weight-normal m-0">Precio total</label>
+                            <div class="text-large"><strong>${{ total | intcomma }}</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="float-right">
+                    <a type="button" class="btn btn-lg btn-default md-btn-flat mt-2 mr-3" href="{% url 'tienda' %}">Volver a la
+                        tienda</a>
+                    <a type="button" class="btn btn-lg btn-primary mt-2" href="{% url 'compraExitosa' %}">Comprar</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!--Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <!-- JavaScript propio -->
+    <script src="{% static 'core/JS/carrito.js' %}"></script>
+    
+
+    <script>
+      // Obtener el token CSRF del cookie
+      function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+          const cookies = document.cookie.split(';');
+          for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+              cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+              break;
+            }
+          }
+        }
+        return cookieValue;
+      }
+
+      const csrftoken = getCookie('csrftoken');
+
+      // Agregar el token CSRF a la petición AJAX
+      function csrfSafeMethod(method) {
+        return /^(GET|HEAD|OPTIONS|TRACE)$/.test(method);
+      }
+
+      $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+          if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader('X-CSRFToken', csrftoken);
+          }
+        }
+      });
+    </script>
+</body>
+</html>

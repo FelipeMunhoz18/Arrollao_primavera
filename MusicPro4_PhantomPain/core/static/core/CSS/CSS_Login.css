@@ -1,0 +1,248 @@
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: black !important;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url("https://files.cults3d.com/uploaders/21855909/illustration-file/8dd3376d-dfd1-4353-998a-57d6a1266892/8.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed; 
+  background-size: 100% 100%;
+}
+.button {
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  background-color: #555555;/* Black */
+}
+
+.container {
+  /* border: 3px solid red; */
+  max-width: 90%;
+  margin: auto;
+  margin-top: 20px;
+}
+
+:root {
+  --cfondo: white;
+  --cfondoForm1: #454546;
+  --cfondoForm2: #454546;
+  --cnegro: white;
+  --ctexto: grey;
+  --ctextoDark: grey;
+  --cblanco: grey;
+  --error: rgb(184, 31, 31);
+}
+a{
+  color: #fff; 
+  
+}
+a:hover {
+  color: #fff;
+}
+q{
+  color: #fff; 
+}
+[type="checkbox"] {
+  display: none;
+}
+
+[type="checkbox"]:checked + label::before {
+  background: var(--cnegro);
+  transition: 0.5s;
+  transform: rotate(180deg);
+}
+
+[type="checkbox"]:checked + label {
+  color: var(--cnegro);
+}
+
+/* ---- FORMULARIO ---- */
+
+.form {
+  color: white;
+  /* border: 3px solid green; */
+  border-top: 2px solid var(--cnegro);
+  max-width: 400px;
+  padding: 30px 50px;
+  margin: auto;
+  margin-top: 10px;
+  background: linear-gradient(
+    0deg,
+    var(--cfondoForm1) 0%,
+    var(--cfondoForm2) 50%
+  );
+}
+
+.form-titulo {
+  color: #fff;
+  font-weight: bold;
+  font-size: 30px;
+  text-align: center;
+  margin: 0;
+  margin-bottom: 20px;
+  letter-spacing: 3px;
+}
+
+.form-input {
+  color: #fff;
+  margin-bottom: 30px;
+}
+
+.form-input label {
+  color: #fff;
+  display: block;
+  margin-top: 10px;
+  font-size: 15px;
+  color: var(--ctexto);
+}
+
+.form-input input {
+  color: #fff;
+  width: 100%;
+  border: none;
+  outline: none;
+  background: none;
+  border-bottom: 1px solid var(--ctexto);
+}
+
+.form-input input:focus + label {
+  color: #fff;
+  font-weight: bold;
+  color: var(--cnegro);
+}
+
+
+.form-terminos {
+  margin-left: 15px;
+  position: relative;
+  color: var(--ctexto);
+  font-size: 13px;
+}
+
+.form-terminos label::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border: 1px solid var(--cnegro);
+  position: absolute;
+  left: -14px;
+}
+
+.form-boton input {
+  color: #fff;
+  background: var(--cnegro);
+  color: var(--cblanco);
+  padding: 10px 50px;
+  font-size: 25px;
+  display: block;
+  margin: auto;
+  margin-top: 40px;
+  border: none;
+}
+
+.form-boton input:hover {
+  color: #fff;
+  background: var(--ctextoDark);
+  transition: 0.5s;
+}
+
+
+
+.mensajeError {
+  color: var(--error);
+  margin-top: 0px;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.mensajeCorrecto {
+  text-align: center;
+  font-weight: bold;
+}
+
+footer {
+  background-color: #e2b27e;
+}
+
+.align-but  {
+  text-align: right;
+  padding-top: 5px;
+}
+
+.container-form {
+  padding-top: 60px;
+}
+
+.formulario {
+  background-color: #fff;
+  padding-bottom: 5px;
+  border: 4px solid grey;
+  border-radius: 20px;
+
+}
+
+/*navbar*/
+.topnav {
+  overflow: hidden;
+  background-color: black;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #fff;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #fff;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #fff;
+  color: black;
+}
+
+.topnav .icon {
+  display: none;
+}
+/*navbar*/
+/*el responsive de la navbar*/
+.topnav-right {
+  float: right;
+}
+
+.tipoProducto {
+  margin-bottom: 30px;
+}
+
+.tipoProducto label {
+  display: block;
+  margin-top: 10px;
+  font-size: 15px;
+  color: var(--ctexto);
+}
+
+.tipoProducto select {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: none;
+  border-bottom: 1px solid var(--ctexto);
+}
+
+.tipoProducto select:focus + label {
+  font-weight: bold;
+  color: var(--cnegro);
+}

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mogli_Maker - Home</title>
+
+         <!-- Bootstrap -->
+         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+         <!-- CSS Propio -->
+        <link type="text/css" rel="stylesheet" href="{% static 'core/CSS/styles.css' %}">
+        <!-- ICONOS INCREÍBLES -->
+        <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+
+        <link rel="icon" type="image/x-icon" href="{% static 'core/IMG/icono.ico' %}">
+
+</head>
+<body>
+    {% load humanize %}
+    
+      <!-- NAVBAR -->
+  <div class="topnav" id="myTopnav">
+    <a href="{% url 'vista_usuario' %}" class="active"><i class="fa fa-home"></i></i> Home</a>
+
+    {% if user.is_authenticated %}
+    <a href="#">Welcome: "{{ user.first_name }} {{user.last_name}}"</a>
+    {% endif%}
+
+    <div class="topnav-right">
+        <a href="{% url 'tienda' %}" style="color: #ffffff;"></i> Go to all products</a>
+        <a href="{% url 'carrito' %}"><i class="fa-solid fa-cart-shopping" style="color: #ffffff;"></i> Shopping Cart</a>
+        <a href="{% url 'index' %}"><i class="fa-sharp fa-solid fa-right-to-bracket" style="color: #ffffff;"></i> Sign off</a>
+    </div>
+
+
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+
+    <!-- NAVBAR -->
+    <style>
+      html,
+      body {
+          width: 100%;
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          font-family: "Helvetica", sans-serif;
+      }
+
+      img {
+          max-width: 100%;
+      }
+
+      .slider-container {
+          height: 50%;
+          width: 100%;
+          position: relative;
+          overflow: hidden;
+          text-align: center;
+      }
+
+      .menu {
+          position: absolute;
+          left: 0;
+          z-index: 900;
+          width: 100%;
+          bottom: 0;
+      }
+
+      .menu label {
+          cursor: pointer;
+          display: inline-block;
+          width: 16px;
+          height: 16px;
+          background: #fff;
+          border-radius: 50px;
+          margin: 0 0.2em 1em;
+      }
+
+      .menu label:hover,
+      .menu label:focus {
+          background: #1c87c9;
+      }
+
+      .slide {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          left: 100%;
+          z-index: 10;
+          padding: 8em 1em 0;
+          background-size: cover;
+          background-position: 50% 50%;
+          transition: left 0s 0.75s;
+      }
+
+      [id^="slide"]:checked+.slide {
+          left: 0;
+          z-index: 100;
+          transition: left 0.65s ease-out;
+      }
+
+      .slide-1 {
+          background-image: url("{% static 'core/IMG/banner7.png' %}");
+      }
+
+      .slide-2 {
+          background-image: url("{% static 'core/IMG/banner2.png' %}");
+      }
+
+      .slide-3 {
+          background-image: url("{% static 'core/IMG/banner1.png' %}");
+      }
+
+      .banner {
+          display: flex;
+          width: 100%;
+      }
+
+      .column {
+          flex: 1;
+          height: 100px;
+          background-color: #e0e0e0;
+          box-sizing: border-box;
+      }
+
+      .big-text {
+          font-size: 20px;
+          /* Adjust the font size as needed */
+          color: black;
+          /* Adjust the color as needed */
+          font-weight: bold;
+          /* Add font weight for emphasis */
+          text-shadow: 2px 2px 4px #fff(0, 0, 0, 0.5);
+          /* Add a text shadow for visual effect */
+          text-align: center;
+          /* Center the text horizontally */
+      }
+
+      footer {
+          color: #fff;
+          background-color: black;
+          padding: 20px;
+          text-align: center;
+      }
+
+      a {
+          color: #fff;
+      }
+
+      a:hover,
+      a:active {
+          color: white;
+      }
+      img {
+border: 2px solid #555;
+}
+
+.hidden {
+    display: none;
+  }
+  </style>
+
+
+<style>
+    #map {
+height: 500px;
+width: 100%;
+
+}
+
+      img { 
+                border-radius: 5%;
+              }
+        a:hover {
+   color: #BFBFBF ;
+   text-decoration: underline;
+      }
+      body {
+font-family: Arial, Helvetica, sans-serif;
+margin: 0;
+}
+
+html {
+box-sizing: border-box;
+}
+
+*, *:before, *:after {
+box-sizing: inherit;
+}
+
+.column {
+float: left;
+width: 33.3%;
+margin-bottom: 16px;
+padding: 0 8px;
+}
+
+.card {
+background-color: #22262b;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+margin: 8px;
+}
+
+.about-section {
+padding: 50px;
+text-align: center;
+background-color: #22262b;
+color: white;
+}
+
+.container {
+padding: 0 16px;
+}
+
+.container::after, .row::after {
+content: "";
+clear: both;
+display: table;
+}
+
+.title {
+color: grey;
+}
+
+.button {
+border: none;
+outline: 0;
+display: inline-block;
+padding: 8px;
+color: white;
+background-color: #000;
+text-align: center;
+cursor: pointer;
+width: 100%;
+}
+
+.button:hover {
+background-color: #555;
+}
+
+@media screen and (max-width: 650px) {
+.column {
+  width: 100%;
+  display: block;
+}
+}
+    </style>
+
+
+    <div class="slider-container">
+      <div class="menu">
+        <label for="slide-dot-1"></label>
+        <label for="slide-dot-2"></label>
+        <label for="slide-dot-3"></label>
+      </div>
+      <input id="slide-dot-1" type="radio" name="slides" checked>
+      <div class="slide slide-1"></div>
+      <input id="slide-dot-2" type="radio" name="slides">
+      <div class="slide slide-2"></div>
+      <input id="slide-dot-3" type="radio" name="slides">
+      <div class="slide slide-3"></div>
+    </div>
+
+    <div>
+        <div class="banner">
+            <div class="column"> <br>
+                <p class="big-text"><i class="fa-solid fa-credit-card"></i> We accept <br>Webpay!</p>
+            </div>
+            <div class="column"> <br>
+                <p class="big-text"><i class="fa-solid fa-cart-shopping" style="color:black;"></i> The best in the business!</p>
+            </div>
+            <div class="column"> <br>
+                <p class="big-text"><i class="fa-regular fa-circle-check"></i> Right to<br>refund!</p>
+            </div>
+        </div>
+
+
+
+<br>
+
+<section class="product"> 
+    <h2 class="product-category">Newest Arrivals:</h2>
+    <button class="pre-btn"><i class="fa-solid fa-arrow-right fa-2xl"></i></button>
+    <button class="nxt-btn"><i class="fa-solid fa-arrow-right fa-2xl"></i></button>
+    <div class="product-container">
+        {% for p in oferta %}
+        <div class="product-card">
+            {% if p.imagenUno %}
+            <div class="product-image">
+                <span class="discount-tag"></span>    
+                <img src="{{ p.imagenUno.url }}" class="product-thumb" alt=""style="border-radius: 10px;">
+                {% endif %}
+                <a type='button' class='card-btn 'href="producto/{{p.id}}" style="text-align: center;">Go to product.</a>
+            </div>
+            <div class="product-info">
+                <h8 class="product-brand">{{ p.nombreProducto}} </h8><br>
+                <span class="price">${{p.precioProducto | intcomma}}</span><span class="actual-price"></span>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+</section>
+<section class="hero">
+    <div class="hero-inner">
+
+        <span id="displayText"><h1>¿Who am I?</h1><br><h3> ¡Discover a bit about me!</h3><br><h3>In each of my works I put a bit of me</h3><br><h3>Wheather it's hobby modeling or something more professional. I try my best. </h3></span>
+        <br>
+        <button id="myButton" class="myButton" onclick="replaceButton()">About me</button>
+      
+
+        <div id="replacementDiv" class="hidden">
+            <h1>From somewhere in Chile.</h1>
+            <div class="container">
+                <div id="map"></div>
+                <script src="{% static 'core/JS/script.js' %}"></script>
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEBaHHft6gPwWJkYFs1HdDFNqHFGuR6rE&callback=iniciarMap"></script>
+                <br>
+                <div class="button-container">
+                <button class="hideButton" onclick="hideDiv()">Hide Map</button>
+                </div>
+            </div>
+
+
+
+
+
+
+
+    </div>
+</section>
+
+</div>
+<div><br>
+
+    <section class="product"> 
+        <h2 class="product-category">My best models:</h2>
+        <button class="pre-btn"><i class="fa-solid fa-arrow-right fa-2xl"></i></button>
+        <button class="nxt-btn"><i class="fa-solid fa-arrow-right fa-2xl"></i></button>
+        <div class="product-container">
+            {% for p in instrumentos %}
+            <div class="product-card">
+                {% if p.imagenUno %}
+                <div class="product-image">
+                    <span class="discount-tag"></span>    
+                    <img src="{{ p.imagenUno.url }}" class="product-thumb" alt=""style="border-radius: 10px;">
+                    {% endif %}
+                    <a type='button' class='card-btn 'href="producto/{{p.id}}" style="text-align: center;">See product.</a>
+                </div>
+                <div class="product-info">
+                    <h8 class="product-brand">{{ p.nombreProducto}} </h8><br>
+                    <span class="price">${{p.precioProducto | intcomma}}</span><span class="actual-price"></span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section></div>
+
+<!--Java script -->
+<script src="{% static 'core/JS/script.js' %}"></script>
+
+ <!--Bootstrap -->
+ <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+     crossorigin="anonymous"></script>
+ <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+     integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+     crossorigin="anonymous"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+     crossorigin="anonymous"></script>
+</body>
+<footer>
+    <p>&copy; 2023: Mogli_Maker cults3d.com</p>
+    <p>&copy; f.munoz7@duocuc.com.</p>
+    <div class="social-links">
+        <p>Share me at: </p>
+        <a href="#">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="#">
+            <i class="fab fa-twitter"></i>
+        </a>
+        <a href="#">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="#">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="#">
+            <i class="fab fa-pinterest"></i>
+        </a>
+</footer>
+</html>
+
+
+
+

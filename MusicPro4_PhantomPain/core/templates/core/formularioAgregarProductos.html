@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mogli_Maker - Add Product</title>
+    <link rel="icon" href="{% static 'core/image/logo_Panaderia.png' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="{% static 'core/css/CSS_Login.css' %}">
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <!-- AHHHHHHHHHHHHHHHHHHHHHHH -->
+    <link rel="icon" type="image/x-icon" href="{% static 'core/IMG/icono.ico' %}">
+    
+    
+</head>
+
+<body>
+  <div class="topnav" id="myTopnav">
+    <a href="{% url 'vista_admin' %}" class="active"><i class="fa fa-home"></i></i> Home.</a>
+    <div class="topnav-right">
+    <a href="{% url 'tienda_admin' %}"><i class="fa-brands fa-product-hunt"></i> Go to all products</a>
+    <a href="{% url 'carrito' %}"><i class="fa-solid fa-cart-shopping" style="color: #ffffff;"></i> Shopping Cart</a>
+    <a href="http://127.0.0.1:5501/carrito.html"><i class="fa-solid fa-upload"></i> Add a Product</a>
+    <a href="{% url 'index' %}"><i class="fa-sharp fa-solid fa-right-to-bracket" style="color: #ffffff;"></i> Sign-Off</a>
+    </div>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>   
+    <div class="container-fluid">
+        <div class=row>
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="container">
+                  {%if messages%}
+                  {%for message in messages%}
+                  <div class="alert alert-dismissible alert-success">
+                     <button type="button"class="close"data-dismiss="alert">&times;</button>
+                     <strong class="text-dark">{{message}}</strong>
+                  </div>
+                  {% endfor %}
+                  {%endif%}
+                    <form action="{% url 'formProducto' %}" class="form" id="form" autocomplete="off" method="POST" enctype="multipart/form-data">
+                      {% csrf_token %}
+                      <p class="form-titulo">Add A product</p>
+                      <div class="form-input nomProd">
+                        <input type="text" id="nomProd" name="nomProd" required>
+                        <label for="nomProd">Product Name</label>
+                        <p class="mensajeError"></p>
+                      </div>
+                      <div class="form-input descProd">
+                        <input type="text" id="descProd" name="descProd" required>
+                        <label for="descProd">Description</label>
+                        <p class="mensajeError"></p>
+                      </div>
+                      <div class="form-input precio">
+                        <input type="number" id="precio" name="precio" required>
+                        <label for="precio">Price</label>
+                        <p class="mensajeError"></p>
+                      </div>
+                      <div class="form-input cantidad">
+                        <input type="number" id="cantidad" name="cantidad" required>
+                        <label for="cantidad">Times Patched</label>
+                        <p class="mensajeError"></p>
+                        <p class="mensajeError" id="mensajeError"></p>
+                      </div>
+                      <div class="form-group">
+                        <label for="">Game origin: </label>
+                        <select name="tipo_producto" id="tipo_producto">
+                          <option value="">Seleccionar</option>
+                          {% for m in tipo_producto %}
+                          <option value="{{ m.id }}">{{m.nombreTipo}}</option>
+                          {% endfor %}
+                          </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="foto_1">Photo 1: (Mandatory) </label>
+                        <input type="file" name="foto_1" id="foto_1" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="foto_2">Photo 2:  (optional)</label>
+                        <input type="file" name="foto_2" id="foto_2" >
+                        <img src="{% static 'core/IMG/guitarraIcon.jpg' %}" style="width: 100%; border-radius: 10px;">
+                      </div>
+                      <div class="form-group">
+                        <label for="foto_3">Photo 3: (optional)</label>
+                        <input type="file" name="foto_3" id="foto_3" >
+                        <img src="{% static 'core/IMG/guitarraIcon.jpg' %}" style="width: 100%; border-radius: 10px;">
+                      </div>
+                      <div class="form-group">
+                        <label for="foto_4">Photo 4: (optional)</label>
+                        <input type="file" name="foto_4" id="foto_4" >
+                        <img src="{% static 'core/IMG/guitarraIcon.jpg' %}" style="width: 100%; border-radius: 10px;">
+                      </div>
+                      <div class="form-boton" >
+                        <input type="submit" value="Submit" class="btnConfirmacion">
+                      </div>
+                      <p class="mensajeCorrecto"></p>
+                    </form>
+                  </div>
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'core/js/aaaa.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
+</body>
+</html>
