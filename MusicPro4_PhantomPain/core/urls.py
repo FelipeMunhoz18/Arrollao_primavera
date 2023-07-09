@@ -1,10 +1,13 @@
 from django.contrib import admin
 from django.urls import path
-from .views import home,producto,html_registro,html_login,tienda,vista_usuario,vista_admin,tienda_admin,agregar_productos,carrito, formProducto \
+from .views import home,producto,html_registro,html_login,tienda,vista_usuario,vista_admin,tienda_admin,agregar_productos,carrito, formProducto,modperfil,resetear,olvidar \
     ,  eliminacion_prod,modificar_productos,funcion_login,registro_view,mostrar_producto,agregar_al_carrito,actualizar_cantidad, carritoVacio, guardar_cantidades, compraExitosa
 
 
 urlpatterns = [
+    path('modperfil', modperfil, name='modperfil'),
+    path('resetear', resetear, name='resetear'),
+    path('olvidar', olvidar, name='olvidar'),
     path('', home, name='index'),
     path('registro', html_registro, name='registro'),
     path('login', html_login, name='login'),

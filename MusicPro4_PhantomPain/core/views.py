@@ -27,6 +27,16 @@ def home(request):
     return render(request, 'core/index.html', data)
 # Create your views here.
 
+def modperfil(request):
+    return render(request, 'core/modperfil.html')
+
+def olvidar(request):
+    return render(request, 'core/olvidar.html')
+
+def resetear(request):
+    return render(request, 'core/resetear.html')
+
+
 def producto(request):
     return render(request, 'core/producto.html')
 

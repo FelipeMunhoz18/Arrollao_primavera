@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MusicPro - Formulario Registro</title>
+  <link rel="icon" href="{% static 'core/image/logo_Panaderia.png' %}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link type="text/css" rel="stylesheet" href="{% static 'core/css/CSS_Registro.css' %}">
+  <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+          <!-- AHHHHHHHHHHHHHHHHHHHHHHH -->
+          <link rel="icon" type="image/x-icon" href="{% static 'core/IMG/icono.ico' %}">
+</head>
+
+<body>
+       <!-- NAVBAR -->
+       <div class="topnav" id="myTopnav">
+        <a href="{% url 'index' %}" class="active"><i class="fa fa-home"></i></i> Inicio</a>
+        <div class="topnav-right">
+          <a href="{% url 'login' %}"><i class="fa-sharp fa-solid fa-right-to-bracket" style="color: #ffffff;"></i> Iniciar-Sesión</a>
+          <a href="{% url 'registro' %}"><i class="fa-sharp fa-solid fa-feather-pointed" style="color: #ffffff;"></i> Crear-Cuenta</a>
+          <a href="{% url 'carrito' %}"><i class="fa-solid fa-cart-shopping" style="color: #ffffff;"></i> Carrito de compras</a>
+        </div>
+
+    
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+          <i class="fa fa-bars"></i>
+        </a>
+      </div>   
+      <!-- NAVBAR -->
+
+  <div class="container-fluid container-form">
+    <div class="row">
+      <div class="col-md-2 hidden-sm"></div>
+      <div class="col-md-8 col-sm-12">
+        <div class="container">
+          {%if messages%}
+          {%for message in messages%}
+          <div class="alert alert-dismissible alert-danger">
+             <button type="button"class="close"data-dismiss="alert">&times;</button>
+             <strong class="text-dark">{{message}}</strong>
+          </div>
+          {% endfor %}
+          {%endif%}
+          <form action="{% url 'registro_view' %}" class="form" id="form" autocomplete="off" method="POST">
+            {% csrf_token %}
+            <p class="form-titulo">Modifica Tu perfíl</p>
+            <div class="form-input nombre">
+              <input type="text" id="nombre" name="nombre">
+              <label for="nombre">Nombre</label>
+              <p class="mensajeError"></p>
+            </div>
+            <div class="form-input apellido">
+              <input type="text" id="apellido" name="apellido">
+              <label for="apellido">Apellidos</label>
+              <p class="mensajeError"></p>
+            </div>
+            <div class="form-input email">
+              <input type="email" id="email" name="email">
+              <label for="email">Correo electrónico</label>
+              <p class="mensajeError"></p>
+            </div>
+            <div class="form-input celular">
+              <input type="text" id="celular" name="celular">
+              <label for="celular">Celular</label>
+              <p class="mensajeError"></p>
+            </div>
+            <div class="form-input password">
+              <input type="password" id="password" name="password">
+              <label for="password">Contraseña</label>
+              <p class="mensajeError"></p>
+            </div>
+            <div class="form-input repeatPassword">
+              <input type="password" id="repeatPassword" name="repeatPassword">
+              <label for="repeatPassword">Repetir Contraseña</label>
+              <p class="mensajeError"></p>
+            </div>
+            <div class="form-terminos terminos">
+              <input type="checkbox" id="terminos">
+              <label for="terminos">He leído y acepto los </label>
+              <a href="#">Términos y Condiciones</a>
+              <p class="mensajeError" id="mensajeError"></p>
+            </div>
+            <div>
+              <q>¿Tienes una cuenta ya?</q>
+              <a href="{% url 'login' %}">Inicia sesion aquí</a>
+            </div>
+            <div class="form-boton">
+              <input type="submit" value="Enviar">
+            </div>
+            <p class="mensajeCorrecto"></p>
+          </form>
+        </div>
+        <div class="col-md-2 hiiden-sm"></div>
+      </div>
+      <script src="{% static 'core/js/Valid_registro.js' %}"></script>
+    </div>
+
+</body>
+
+</html>

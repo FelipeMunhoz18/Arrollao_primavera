@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MusicPro - Inicio de Sesión</title>
+    <link rel="icon" href="{% static 'core/image/logo_Panaderia.png' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="{% static 'core/css/CSS_Login.css' %}">
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+            <!-- AHHHHHHHHHHHHHHHHHHHHHHH -->
+            <link rel="icon" type="image/x-icon" href="{% static 'core/IMG/icono.ico' %}">
+</head>
+<body>
+<!-- NAVBAR -->
+<div class="topnav" id="myTopnav">
+  <a href="{% url 'index' %}" class="active"><i class="fa fa-home"></i></i> Inicio</a>
+  <div class="topnav-right">
+    <a href="{% url 'login' %}"><i class="fa-sharp fa-solid fa-right-to-bracket" style="color: #ffffff;"></i> Iniciar-Sesión</a>
+    <a href="{% url 'registro' %}"><i class="fa-sharp fa-solid fa-feather-pointed" style="color: #ffffff;"></i> Crear-Cuenta</a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+      <i class="fa fa-bars"></i>
+  </div>
+
+
+</body>
+</html>
