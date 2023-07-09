@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from .views import home,producto,html_registro,html_login,tienda,vista_usuario,vista_admin,tienda_admin,agregar_productos,carrito, formProducto \
+from .views import home,producto,html_registro,html_login,tienda,vista_usuario,vista_admin,tienda_admin,agregar_productos,carrito, formProducto,modperfil \
     ,  eliminacion_prod,modificar_productos,funcion_login,registro_view,mostrar_producto,agregar_al_carrito,actualizar_cantidad, carritoVacio, guardar_cantidades, compraExitosa
 
 
@@ -10,6 +10,8 @@ urlpatterns = [
     path('login', html_login, name='login'),
     path('tienda', tienda, name='tienda'),
     path('usuario', vista_usuario, name='vista_usuario'),
+    path('modperfil', modperfil, name='modperfil'),
+
     
     path('vista_admin', vista_admin, name='vista_admin'),
     path('tienda_admin', tienda_admin, name='tienda_admin'),
@@ -26,4 +28,5 @@ urlpatterns = [
     path('carritoVacio',carritoVacio,name='carritoVacio'),
     path('guardar_cantidades/', guardar_cantidades, name='guardar_cantidades'),
     path('compraExitosa',compraExitosa,name='compraExitosa'),
+
 ]
