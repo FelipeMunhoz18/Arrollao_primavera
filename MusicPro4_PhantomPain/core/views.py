@@ -36,9 +36,6 @@ def html_registro(request):
 def html_login(request):
     return render(request, 'core/formularioLogin.html')
 
-def modperfil(request):
-    return render(request, 'core/modperfil.html')
-
 @login_required
 def tienda(request):
     productos = Producto.objects.all()
