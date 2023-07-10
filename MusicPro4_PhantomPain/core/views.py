@@ -326,3 +326,50 @@ def compraExitosa(request):
     return(redirect('vista_usuario'))
 
 
+@login_required
+def modificar_perfil(request, id):
+    user = request.user
+
+    if request.method == 'POST':
+        # Obtener los datos enviados en el formulario
+        nombre = request.POST.get('nombre')
+        apellido = request.POST.get('apellido')
+        email = request.POST.get('email')
+        celular = request.POST.get('celular')
+        password = request.POST.get('password')
+        new_password = request.POST.get('new_password')
+        repeat_password = request.POST.get('repeat-new-password')
+        print(user.first_name)
+        print(user.last_name)
+        print(user.email)
+
+        # Verificar si la contraseña antigua es correcta
+        if not user.check_password(password):
+            messages.error(request, 'Contraseña incorrecta.')
+            return redirect('modificar_perfil', id=id)
+
+        # Actualizar los datos del usuario
+        user.first_name = nombre
+        user.last_name = apellido
+        user.email = email
+        user.username = email
+        user.save()
+
+        # Verificar si se proporcionó una nueva contraseña
+        if new_password:
+            # Verificar si las contraseñas nuevas coinciden
+            if new_password != repeat_password:
+                messages.error(request, 'Las contraseñas no coinciden.')
+                return redirect('modificar_perfil', id=id)
+
+            # Cambiar la contraseña del usuario
+            user.set_password(new_password)
+            user.save()
+
+            # Iniciar sesión nuevamente para actualizar la sesión con la nueva contraseña
+            auth_login(request, user)
+
+        messages.success(request, 'Profile updated succesfully')
+        return redirect('vista_usuario')
+
+    return render(request, 'core/modperfil.html', {'usuario': user})
